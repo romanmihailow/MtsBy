@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import java.util.List;
 
 public class CommunicationServicePage {
     public WebDriver driver;
@@ -17,37 +18,44 @@ public class CommunicationServicePage {
 
 
 
-    /// Проверка pop-up она == "Обработка файлов cookie"
-    @FindBy(xpath = "/html/body/div[6]/main/div/div[2]/div/div[1]/div[1]/h3")
+    ///update Проверка pop-up она == "Обработка файлов cookie"
+    @FindBy(xpath = "//div[contains(@class, 'cookie')]/h3")
     public WebElement cookiePageTitle;
+//    @FindBy(xpath = "/html/body/div[6]/main/div/div[2]/div/div[1]/div[1]/h3")
+//    public WebElement cookiePageTitle;
 
-    /// Кнопка принять (всплывающее окно при входе на страницу) - click
-    @FindBy(xpath = "//*[@id=\"cookie-agree\"]")
+    ///update Кнопка принять (всплывающее окно при входе на страницу) - click
+    @FindBy(xpath = "//button[contains(@id, 'cookie-agree')]")
     private WebElement cookieAgreeButton;
+//    @FindBy(xpath = "//*[@id=\"cookie-agree\"]")
+//    private WebElement cookieAgreeButton;
 
-    /// Название блока онлайн пополнение без комиссии == "Онлайн пополнение без комиссии"
-    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/h2/text()[1]")
+    ///update Название блока онлайн пополнение без комиссии == "Онлайн пополнение без комиссии"
+    @FindBy(xpath = "//*[@id='pay-section']//h2")
     private WebElement paySectionTitle;
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/h2/text()[1]")
+//    private WebElement paySectionTitle;
 
-    /// Visa ==
-    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[1]/img")
-    private WebElement paySectionImageVisa;
-
-    /// VerifiedByVisa ==
-    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[2]/img")
-    private WebElement paySectionImageVerifiedByVisa;
-
-    /// MasterCard ==
-    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[3]/img")
-    private WebElement paySectionImageMasterCard;
-
-    /// MasterCardSecureCode ==
-    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[4]/img")
-    private WebElement paySectionImageMasterCardSecureCode;
-
-    /// BelCart ==
-    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[5]/img")
-    private WebElement paySectionImageBelCart;
+    /// Логотипы платежных систем (Visa, VerifiedByVisa, MasterCard и т.д.)
+    @FindBy(xpath = "//ul/li/img[contains(@alt, 'Visa') or contains(@alt, 'MasterCard') or contains(@alt, 'BelCart')]")
+    private List<WebElement> paymentLogos;
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li/img")
+//    private List<WebElement> paymentLogos;
+//    /// Visa ==
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[1]/img")
+//    private WebElement paySectionImageVisa;
+//    /// VerifiedByVisa ==
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[2]/img")
+//    private WebElement paySectionImageVerifiedByVisa;
+//    /// MasterCard ==
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[3]/img")
+//    private WebElement paySectionImageMasterCard;
+//    /// MasterCardSecureCode ==
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[4]/img")
+//    private WebElement paySectionImageMasterCardSecureCode;
+//    /// BelCart ==
+//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[5]/img")
+//    private WebElement paySectionImageBelCart;
 
     /// Подробнее о сервисе - click
     @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/a")
@@ -57,25 +65,43 @@ public class CommunicationServicePage {
     @FindBy(xpath = "/html/body/div[6]/main/div/div[4]/h3[1]")
     private WebElement titlePageInfoPayCard;
 
+
     /// Поле номер телефона - ввести номер телефона: 297777777
     @FindBy(xpath = "//*[@id=\"connection-phone\"]")
     private WebElement connectionPhoneNumber;
-
     /// Поле сумма - ввести сумму: 100
     @FindBy(xpath = "//*[@id=\"connection-sum\"]")
     private WebElement connectionSum;
-
     /// Поле email - ввести email: rmw@gmail.com
     @FindBy(xpath = "//*[@id=\"connection-email\"]")
     private WebElement connectionEmail;
-
     /// Кнопка продолжить - click
     @FindBy(xpath = "//*[@id=\"pay-connection\"]/button")
     private WebElement payConnectionButton;
 
-    /// Проверка перехода на форму оплаты
+
+
+    /// Проверка перехода на форму оплаты gPay
     @FindBy(xpath = "/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[2]/span")
     private WebElement paySectionTitleGPay;
+    /// @FindBy(xpath = "//span[contains(text(), 'Оплата: Услуги связи')]\n")
+
+
+
+
+
+
+    /// Проверка плейсхолдера "Номер телефона"
+    @FindBy(xpath = "//*[@placeholder='Номер телефона']")
+    private WebElement phoneInput;
+
+    /// Проверка плейсхолдера "Сумма"
+    @FindBy(xpath = "//*[@placeholder='Сумма']")
+    private WebElement totalSumInput;
+
+    /// Проверка плейсхолдера "E-mail для отправки"
+    @FindBy(xpath = "//*[@placeholder='E-mail для отправки чека']")
+    private WebElement emailInput;
 
 
 
@@ -94,21 +120,12 @@ public class CommunicationServicePage {
     public String getPaySectionTitle() {
         return paySectionTitle.getText();
     }
-    public WebElement getPaySectionImageVisa() {
-        return paySectionImageVisa;
+
+    /// Метод получения списка логотипов
+    public List<WebElement> getPaymentLogos() {
+        return paymentLogos;
     }
-    public WebElement getPaySectionImageVerifiedByVisa() {
-        return paySectionImageVerifiedByVisa;
-    }
-    public WebElement getPaySectionImageMasterCard() {
-        return paySectionImageMasterCard;
-    }
-    public WebElement getPaySectionImageMasterCardSecureCode() {
-        return paySectionImageMasterCardSecureCode;
-    }
-    public WebElement getPaySectionImageBelCart() {
-        return paySectionImageBelCart;
-    }
+
     /// Метод для клика по ссылке подробнее об оплате
     public void clickPaySectionLink() {
         clickPaySectionLink.click();
@@ -141,6 +158,58 @@ public class CommunicationServicePage {
     public String getPaySectionTitleGPay() {
         return paySectionTitleGPay.getText();
     }
+
+    /// Проверить корректность отображения суммы (в том числе на кнопке),
+    /// номера телефона, а также надписей в незаполненных полях для ввода реквизитов карты,
+    /// наличие иконок платёжных систем.
+
+    /// Отображение суммы
+    @FindBy(xpath = "//span[contains(text(), 'BYN')]\n")
+    private WebElement gPayInfoTextSum;
+    /// Отображение суммы на кнопке
+    @FindBy(xpath = "//button[contains(text(), 'Оплатить') and contains(text(), 'BYN')]\n")
+    private WebElement gPayInfoButtonSum;
+
+
+
+    /// Отображение номера телефона
+    @FindBy(xpath = "//span[contains(text(), 'Оплата: Услуги связи')]\n")
+    private WebElement gPayInfoTextPhoneNumber;
+
+    /// Locator CART pay
+    /// Number cart
+    @FindBy(xpath = "//label[text() = 'Номер карты']")
+    private WebElement gPayInfoNumberCart;
+    /// Date Cart
+    @FindBy(xpath = "//label[text() = 'Срок действия']")
+    private WebElement gPayInfoDateCart;
+    /// CVC
+    @FindBy(xpath = "//label[text() = 'CVC']")
+    private WebElement gPayInfoCvcCart;
+    /// Name cart holder
+    @FindBy(xpath = "//label[text() = 'Имя держателя (как на карте)']")
+    private WebElement gPayInfoNameHolderCart;
+
+    /// Logo payment
+    @FindBy(xpath = "//img[@src='assets/images/payment-icons/card-types/visa-system.svg']")
+    private WebElement gPayLogoVisa;
+    @FindBy(xpath = "//img[@src='assets/images/payment-icons/card-types/mastercard-system.svg']")
+    private WebElement gPayLogoMasterCart;
+    @FindBy(xpath = "//img[@src='assets/images/payment-icons/card-types/belkart-system.svg']")
+    private WebElement gPayLogoBelCart;
+    @FindBy(xpath = "//img[@src='assets/images/payment-icons/card-types/maestro-system.svg']")
+    private WebElement gPayLogoMIRCart;
+
+
+
+
+    public String getGPayInfoButtonSum() {
+        return gPayInfoTextSum.getText();
+    }
+    public WebElement getGPayInfoTextSum() {
+        return gPayInfoTextSum;
+    }
+
 
 
 
