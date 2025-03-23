@@ -1,7 +1,4 @@
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,16 +6,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.aston.ConfProperties;
-import ru.aston.InstallmentPlanPage;
+
 import java.time.Duration;
 
+/// ВСЕ ТЕСТЫ ПРОХОДЯТ ///
+
 public class InstallmentPlanPageTest {
+
     private static WebDriver driver;
     public static WebDriverWait wait;
     public static InstallmentPlanPage installmentPlanPage;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -28,7 +27,6 @@ public class InstallmentPlanPageTest {
         driver.get(ConfProperties.getProperty("url"));
         installmentPlanPage = new InstallmentPlanPage(driver);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // Проверяем, есть ли кнопка согласия с cookie
         try {
             WebElement cookieAgreeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cookie-agree")));
@@ -39,34 +37,38 @@ public class InstallmentPlanPageTest {
         installmentPlanPage.clickDropDownMenuButton();
         installmentPlanPage.clickInstallmentPlanSelect();
     }
-    /// Тест на плейсхолдер "Номер счета"
+
+    @DisplayName("Тест на плейсхолдер Номер счета")
     @Test
     public void placeHolderInstallmentNumberTest() {
         // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(installmentPlanPage.getSubscriberNumberInput()));
         String expectedPlaceHolder = "Номер счета на 44";
         String actualPlaceHolder = installmentPlanPage.getSubscriberNumberPlaceholder();
-        Assert.assertEquals(expectedPlaceHolder, actualPlaceHolder);
+        Assertions.assertEquals(expectedPlaceHolder, actualPlaceHolder);
     }
-    /// Тест на плейсхолдер "Сумма"
+
+    @DisplayName("Тест на плейсхолдер Сумма")
     @Test
     public void placeHolderSumInstallmentTest() {
         // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(installmentPlanPage.getTotalSumInput()));
         String expectedPlaceHolder = "Сумма";
         String actualPlaceHolder = installmentPlanPage.getTotalSumPlaceholder();
-        Assert.assertEquals(expectedPlaceHolder, actualPlaceHolder);
+        Assertions.assertEquals(expectedPlaceHolder, actualPlaceHolder);
     }
-    /// Тест на плейсхолдер "Email"
+
+    @DisplayName("Тест на плейсхолдер Email")
     @Test
     public void placeHolderEmailInstallmentTest() {
         // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(installmentPlanPage.getEmailInput()));
         String expectedPlaceHolder = "E-mail для отправки чека";
         String actualPlaceHolder = installmentPlanPage.getEmailPlaceholder();
-        Assert.assertEquals(expectedPlaceHolder, actualPlaceHolder);
+        Assertions.assertEquals(expectedPlaceHolder, actualPlaceHolder);
     }
-    @AfterClass
+
+    @AfterAll
     public static void tearDown() {
         if (driver != null) {
             driver.quit();

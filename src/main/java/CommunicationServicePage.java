@@ -1,9 +1,8 @@
-package ru.aston;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import java.util.List;
 
 public class CommunicationServicePage {
@@ -39,23 +38,6 @@ public class CommunicationServicePage {
     /// Логотипы платежных систем (Visa, VerifiedByVisa, MasterCard и т.д.)
     @FindBy(xpath = "//ul/li/img[contains(@alt, 'Visa') or contains(@alt, 'MasterCard') or contains(@alt, 'BelCart')]")
     private List<WebElement> paymentLogos;
-//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li/img")
-//    private List<WebElement> paymentLogos;
-//    /// Visa ==
-//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[1]/img")
-//    private WebElement paySectionImageVisa;
-//    /// VerifiedByVisa ==
-//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[2]/img")
-//    private WebElement paySectionImageVerifiedByVisa;
-//    /// MasterCard ==
-//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[3]/img")
-//    private WebElement paySectionImageMasterCard;
-//    /// MasterCardSecureCode ==
-//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[4]/img")
-//    private WebElement paySectionImageMasterCardSecureCode;
-//    /// BelCart ==
-//    @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/div[2]/ul/li[5]/img")
-//    private WebElement paySectionImageBelCart;
 
     /// Подробнее о сервисе - click
     @FindBy(xpath = "//*[@id=\"pay-section\"]/div/div/div[2]/section/div/a")
