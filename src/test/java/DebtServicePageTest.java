@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,8 +27,6 @@ public class DebtServicePageTest {
         driver.get(ConfProperties.getProperty("url"));
         debtServicePage = new DebtServicePage(driver);
 
-        System.out.println("start");
-        // Проверяем, есть ли кнопка согласия с cookie
         try {
             WebElement cookieAgreeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cookie-agree")));
             cookieAgreeButton.click();
@@ -34,19 +34,14 @@ public class DebtServicePageTest {
             System.out.println("Кнопка согласия с cookie не найдена, продолжаем тест.");
         }
 
-        //debtServicePage.clickEmailField();
-        //System.out.println("clickEmailField");
-
         debtServicePage.clickDropDownMenuButton();
-        System.out.println("clickDropDownMenuButton");
         debtServicePage.clickDropDownMenuDebtServiceSelect();
-        System.out.println("clickDropDownMenuDebtServiceSelect");
     }
 
     @DisplayName("Тест на плейсхолдер Номер абонента")
+    @Description("Проверяем, что плейсхолдер поля 'Номер счета' соответствует ожидаемому значению.")
     @Test
     public void placeHolderDebtServicePhoneTest() {
-        // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(debtServicePage.getSubscriberNumberInput()));
         String expectedPlaceHolder = "Номер счета на 2073";
         String actualPlaceHolder = debtServicePage.getSubscriberNumberPlaceholder();
@@ -54,9 +49,9 @@ public class DebtServicePageTest {
     }
 
     @DisplayName("Тест на плейсхолдер Сумма")
+    @Description("Проверяем, что плейсхолдер поля 'Сумма' соответствует ожидаемому значению.")
     @Test
     public void placeHolderSumTest() {
-        // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(debtServicePage.getTotalSumInput()));
         String expectedPlaceHolder = "Сумма";
         String actualPlaceHolder = debtServicePage.getTotalSumPlaceholder();
@@ -64,9 +59,9 @@ public class DebtServicePageTest {
     }
 
     @DisplayName("Тест на плейсхолдер Email")
+    @Description("Проверяем, что плейсхолдер поля 'E-mail для отправки чека' соответствует ожидаемому значению.")
     @Test
     public void placeHolderEmailTest() {
-        // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(debtServicePage.getEmailInput()));
         String expectedPlaceHolder = "E-mail для отправки чека";
         String actualPlaceHolder = debtServicePage.getEmailPlaceholder();

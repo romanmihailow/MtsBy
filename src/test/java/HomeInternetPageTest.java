@@ -6,10 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
-
-/// ВСЕ ТЕСТЫ ПРОХОДЯТ ///
 
 public class HomeInternetPageTest {
 
@@ -27,7 +27,6 @@ public class HomeInternetPageTest {
         driver.get(ConfProperties.getProperty("url"));
         homeInternetPage = new HomeInternetPage(driver);
 
-        // Проверяем, есть ли кнопка согласия с cookie
         try {
             WebElement cookieAgreeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cookie-agree")));
             cookieAgreeButton.click();
@@ -35,35 +34,36 @@ public class HomeInternetPageTest {
             System.out.println("Кнопка согласия с cookie не найдена, продолжаем тест.");
         }
         homeInternetPage.clickDropDownMenuButton();
-        //System.out.println("clickDropDownMenuButton");
         homeInternetPage.clickDropDownMenuHomeInternetSelect();
-        //System.out.println("clickDropDownMenuHomeInternetSelect");
     }
 
+    @Step("Проверка плейсхолдера 'Номер абонента'")
     @DisplayName("Тест на плейсхолдер Номер абонента")
     @Test
+    @Description("Проверка, что плейсхолдер для поля 'Номер абонента' отображается корректно.")
     public void placeHolderInternetPhoneTest() {
-        // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(homeInternetPage.getSubscriberNumberInput()));
         String expectedPlaceHolder = "Номер абонента";
         String actualPlaceHolder = homeInternetPage.getSubscriberNumberPlaceholder();
         Assertions.assertEquals(expectedPlaceHolder, actualPlaceHolder);
     }
 
+    @Step("Проверка плейсхолдера 'Сумма'")
     @DisplayName("Тест на плейсхолдер Сумма")
     @Test
+    @Description("Проверка, что плейсхолдер для поля 'Сумма' отображается корректно.")
     public void placeHolderSumTest() {
-        // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(homeInternetPage.getTotalSumInput()));
         String expectedPlaceHolder = "Сумма";
         String actualPlaceHolder = homeInternetPage.getTotalSumPlaceholder();
         Assertions.assertEquals(expectedPlaceHolder, actualPlaceHolder);
     }
 
+    @Step("Проверка плейсхолдера 'Email'")
     @DisplayName("Тест на плейсхолдер Email")
     @Test
+    @Description("Проверка, что плейсхолдер для поля 'Email' отображается корректно.")
     public void placeHolderEmailTest() {
-        // Используем метод вместо прямого доступа
         wait.until(ExpectedConditions.visibilityOf(homeInternetPage.getEmailInput()));
         String expectedPlaceHolder = "E-mail для отправки чека";
         String actualPlaceHolder = homeInternetPage.getEmailPlaceholder();
