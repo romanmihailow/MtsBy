@@ -128,9 +128,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <resultsDirectory>target/allure-results</resultsDirectory>
-                    <reportDirectory>target/allure-report</reportDirectory>
+                    <resultsDirectory>C:\Users\user\IdeaProjects\AstonJava2025\ASTON_Homework\MtsBy\allure-results</resultsDirectory>
+                    <reportDirectory>allure-report</reportDirectory>
                 </configuration>
+
             </plugin>
         </plugins>
     </build>
